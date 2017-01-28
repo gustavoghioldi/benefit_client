@@ -1,5 +1,5 @@
 $(function () {
-  var hostName = window.location;
+  var hostName = window.location.origin;
   var endpoint = "http://benefit-lacaja.herokuapp.com/api/config?api_token=9db19FZ9jac1kVoFnxCiYja7fBiHWT1TCGvDXQZpHLpwkJqFpfz5qlVkNgHM"
   var footerTpl = hostName+"/themes/assets/templates/footer.hbs";
   var titleTpl = hostName+"/themes/assets/templates/title.hbs";
