@@ -107,8 +107,7 @@
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+
       </ol>
       <div class="carousel-inner">
         <div class="item active">
@@ -116,35 +115,43 @@
 			src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
 			</script>
 			<script>
-			var myCenter=new google.maps.LatLng(51.508742,-0.120850);
-			var marker;
-			function initialize()
-			{
-			var mapProp = {
-			  center:myCenter,
-			  zoom:15,
-			  mapTypeId:google.maps.MapTypeId.ROADMAP
-			  };
-			var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-			marker=new google.maps.Marker({
-			  position:myCenter,
-			 // icon:'themes/assets/images/nepali-momo.png',
-			  animation:google.maps.Animation.BOUNCE
-			  });
+      
+      navigator.geolocation.getCurrentPosition(function(position) {
+        lat = position.coords.latitude;
+        lon = position.coords.longitude;
+        
+      var myCenter=new google.maps.LatLng(lat,lon);
+      var marker;
+      function initialize()
+      {
+      var mapProp = {
+        center:myCenter,
+        zoom:15,
+        mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+      var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+      marker=new google.maps.Marker({
+        position:myCenter,
+       // icon:'themes/assets/images/nepali-momo.png',
+        animation:google.maps.Animation.BOUNCE
+        });
 
-			marker.setMap(map);
+      marker.setMap(map);
 
-			// Info open
-			var infowindow = new google.maps.InfoWindow({
-			  content:"Hello World!"
-			  });
+      // Info open
+      var infowindow = new google.maps.InfoWindow({
+        content:"Hello World!"
+        });
 
-			google.maps.event.addListener(marker, 'click', function() {
-			  infowindow.open(map,marker);
-			  });
-			}
-			google.maps.event.addDomListener(window, 'load', initialize);
-			</script>
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map,marker);
+        });
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+      
+      });
+     
+      </script>
 			<div id="googleMap" style="height:450px;"></div>
 			  <div class="container">
 				<div class="carousel-caption">
@@ -557,5 +564,6 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="themes/dist/js/bootstrap.min.js"></script>
     <script src="themes/assets/js/holder.js"></script>
+    <script src="themes/assets/js/benefit.js"></script>
   </body>
 </html>
