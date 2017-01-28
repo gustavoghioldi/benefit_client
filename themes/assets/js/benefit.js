@@ -1,14 +1,14 @@
 $(function () {
-  
+  var hostName = window.location;
   var endpoint = "http://benefit-lacaja.herokuapp.com/api/config?api_token=9db19FZ9jac1kVoFnxCiYja7fBiHWT1TCGvDXQZpHLpwkJqFpfz5qlVkNgHM"
-  var footerTpl = "../themes/assets/templates/footer.hbs";
-  var titleTpl = "../themes/assets/templates/title.hbs";
-  var categoriesDropdownTpl = "../themes/assets/templates/categoriesDropdown.hbs";
-  var buttonSuscribtionTbl = "../themes/assets/templates/buttonSuscription.hbs";
-  var outstandingTbl = "../themes/assets/templates/outstanding.hbs"
-  var marketingTpl = "../themes/assets/templates/marketing.hbs";
-  var suscriptionModalTpl = "../themes/assets/templates/suscriptionModal.hbs";
-  var introSectionTpl= "../themes/assets/templates/introSection.hbs";
+  var footerTpl = hostName+"/themes/assets/templates/footer.hbs";
+  var titleTpl = hostName+"/themes/assets/templates/title.hbs";
+  var categoriesDropdownTpl = hostName+"/themes/assets/templates/categoriesDropdown.hbs";
+  var buttonSuscribtionTbl = hostName+"/themes/assets/templates/buttonSuscription.hbs";
+  var outstandingTbl = hostName+"/themes/assets/templates/outstanding.hbs"
+  var marketingTpl = hostName+"/themes/assets/templates/marketing.hbs";
+  var suscriptionModalTpl = hostName+"/themes/assets/templates/suscriptionModal.hbs";
+  var introSectionTpl= hostName+"/themes/assets/templates/introSection.hbs";
 
   var configData = '{"name":"Comunidad La Caja","logo":"community\/6c1a920ad5ed0846d68a001fff1c184a.png","benefits":[{"category":{"id":1,"name":"Gastronomia"},"benefits":[]},{"category":{"id":2,"name":"Salidas"},"benefits":[]},{"category":{"id":3,"name":"Moda"},"benefits":[]},{"category":{"id":4,"name":"Turismo"},"benefits":[]},{"category":{"id":5,"name":"Belleza"},"benefits":[]},{"category":{"id":6,"name":"Deportes"},"benefits":[]},{"category":{"id":7,"name":"Otras"},"benefits":[]}]}';
  
