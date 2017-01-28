@@ -1,11 +1,11 @@
 $(function () {
   var endpoint = "http://benefit-lacaja.herokuapp.com/api/config?api_token=9db19FZ9jac1kVoFnxCiYja7fBiHWT1TCGvDXQZpHLpwkJqFpfz5qlVkNgHM"
   var footerTpl = "../themes/assets/templates/footer.hbs";
-  var titleTpl = "../themes/assets/templates/title.hbs";
-  var categoriesDropdownTpl = "../themes/assets/templates/categoriesDropdown.hbs";
-  var buttonSuscribtionTbl = "../themes/assets/templates/buttonSuscription.hbs";
-  var outstandingTbl = "../themes/assets/templates/outstanding.hbs"
-  var marketingTpl = "../themes/assets/templates/marketing.hbs";
+  var titleTpl = "../benefit_client/themes/assets/templates/title.hbs";
+  var categoriesDropdownTpl = "../benefit_client/themes/assets/templates/categoriesDropdown.hbs";
+  var buttonSuscribtionTbl = "../benefit_client/themes/assets/templates/buttonSuscription.hbs";
+  var outstandingTbl = "../benefit_client/themes/assets/templates/outstanding.hbs"
+  var marketingTpl = "../benefit_client/themes/assets/templates/marketing.hbs";
 
   var configData = '{"name":"Comunidad La Caja","logo":"community\/6c1a920ad5ed0846d68a001fff1c184a.png","benefits":[{"category":{"id":1,"name":"Gastronomia"},"benefits":[]},{"category":{"id":2,"name":"Salidas"},"benefits":[]},{"category":{"id":3,"name":"Moda"},"benefits":[]},{"category":{"id":4,"name":"Turismo"},"benefits":[]},{"category":{"id":5,"name":"Belleza"},"benefits":[]},{"category":{"id":6,"name":"Deportes"},"benefits":[]},{"category":{"id":7,"name":"Otras"},"benefits":[]}]}';
  
