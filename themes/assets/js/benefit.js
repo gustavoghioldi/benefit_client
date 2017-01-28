@@ -1,29 +1,54 @@
 $(function () {
-  parseFooter();
+  var endpoint = "http://benefit-lacaja.herokuapp.com/api/config?api_token=9db19FZ9jac1kVoFnxCiYja7fBiHWT1TCGvDXQZpHLpwkJqFpfz5qlVkNgHM"
+  var footerTpl = "../themes/assets/templates/footer.hbs";
+  var titleTpl = "../themes/assets/templates/title.hbs";
+  var categoriesDropdownTpl = "../themes/assets/templates/categoriesDropdown.hbs";
+  var buttonSuscribtionTbl = "../themes/assets/templates/buttonSuscription.hbs";
+  var outstandingTbl = "../themes/assets/templates/outstanding.hbs"
+  var marketingTpl = "../themes/assets/templates/marketing.hbs";
+
+  var configData = '{"name":"Comunidad La Caja","logo":"community\/6c1a920ad5ed0846d68a001fff1c184a.png","benefits":[{"category":{"id":1,"name":"Gastronomia"},"benefits":[]},{"category":{"id":2,"name":"Salidas"},"benefits":[]},{"category":{"id":3,"name":"Moda"},"benefits":[]},{"category":{"id":4,"name":"Turismo"},"benefits":[]},{"category":{"id":5,"name":"Belleza"},"benefits":[]},{"category":{"id":6,"name":"Deportes"},"benefits":[]},{"category":{"id":7,"name":"Otras"},"benefits":[]}]}';
+ 
+  var configDataJson = JSON.parse(configData);
+
+  parseTemplate(footerTpl, ".content-footer", null);
+  parseTemplate(titleTpl, ".content-title", JSON.parse(configData));
+  parseTemplate(categoriesDropdownTpl, ".content-dropdown", configDataJson);
+  parseTemplate(buttonSuscribtionTbl, ".content-btn-suscription", null);
+  parseTemplate(outstandingTbl, ".content-outstanding", {"title":"Nuestros mejores Beneficios", "text":"	Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy"});
+  parseTemplate(marketingTpl, ".content-marketing", null);
+
+  var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://benefit-lacaja.herokuapp.com/api/config?api_token=9db19FZ9jac1kVoFnxCiYja7fBiHWT1TCGvDXQZpHLpwkJqFpfz5qlVkNgHM",
+  "method": "GET",
+  "headers": {
+    "content-type": "application/json",
+    "cache-control": "no-cache"
+  },
+  "processData": false
+}
+
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
   
+
 });
 
-var parseFooter = function(){
+var parseTemplate = function (templateUrl, contentClassName, data ){
+    
+     
+     $.get(templateUrl, function(templateData){
 
-  $.get( "../themes/assets/templates/footer.hbs", function( data ) {
-     var theTemplateScript = data;
-     // Compile the template
-     var theTemplate = Handlebars.compile(theTemplateScript);
-
-     // Define our data object (pude ser por get)
-      var context={
-       "city": "London",
-       "street": "Baker Street",
-        "number": "221B"
-      };
-      $.get("../themes/assets/templates/test.json", function(data){
-
-      // Pass our data to the template
-     var theCompiledHtml = theTemplate(context);
-
+       var theTemplateScript = templateData;
+       // Compile the template
+      var theTemplate = Handlebars.compile(theTemplateScript);
+      var theCompiledHtml = theTemplate(data);
       // Add the compiled html to the page
-      $('.content-footer').html(theCompiledHtml);
-      });
+      $(contentClassName).html(theCompiledHtml);
 
-    });
+     });
 }
