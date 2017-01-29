@@ -21,7 +21,7 @@ $(function() {
     var marketingLastTpl = hostName + "/themes/assets/templates/marketingLast.hbs";
     var introSectionLastTpl = hostName + "/themes/assets/templates/introSectionLast.hbs";
     var hightLightTpl = hostName + "/themes/assets/templates/hightLight.hbs";
-    var categoriesCarouselTpl = "../themes/assets/templates/categoriesCarousel.hbs";
+    var categoriesCarouselTpl = "/themes/assets/templates/categoriesCarousel.hbs";
 
     $.ajax({
         type: 'get',

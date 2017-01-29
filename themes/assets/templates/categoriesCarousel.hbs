@@ -13,7 +13,7 @@
 						<h4>{{name}}</h4>
 						<h5>{{description}}</h5>
                         <p>
-                         <a id="modal-benefit" class="btn btn-default" role="button" onclick="showModal({{id}})">Ver Más</a>
+                         <a id="modal-benefit" class="btn btn-default" role="button" onclick="showModalBenefit({{id}})">Ver Más</a>
                         </p>
 					</div> 
                  {{/ifless}}
@@ -29,7 +29,7 @@
 	
 </div>
  <script>
-     function showModal(benefitId){
+     function showModalBenefit(benefitId){
          console.log(benefitId)
         $("#benefitModal").modal();
      }

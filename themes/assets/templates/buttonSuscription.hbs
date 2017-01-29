@@ -1,3 +1,10 @@
 {{#if true}}
-    <a class="btn btn-lg btn-default" role="button" style="font-size:2em"  data-toggle="modal" data-target="#suscribeModal">Suscribite</a>
+    
+    <a class="btn btn-lg btn-default" role="button" style="font-size:2em" onclick="showModalSuscribe()">Suscribite</a>
 {{/if}}
+
+ <script>
+     function showModalSuscribe(){
+        $("#suscribeModal").modal();
+     }
+ </script>
