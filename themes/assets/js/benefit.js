@@ -1,6 +1,12 @@
 $(function() {
+    Handlebars.registerHelper('ifless', function(v1, v2, options) {
+        if (v1 < v2) {
+            return options.fn(this);
+        }
+        return options.inverse(this);
+    });
 
-    var hostName = "http://benefit.com.ar/benefit_client/";
+    var hostName = "http://localhost:3500";
 
     var endpoint = "http://benefit-lacaja.herokuapp.com/api/config?api_token=9db19FZ9jac1kVoFnxCiYja7fBiHWT1TCGvDXQZpHLpwkJqFpfz5qlVkNgHM"
     var footerTpl = hostName + "/themes/assets/templates/footer.hbs";
@@ -10,18 +16,48 @@ $(function() {
     var outstandingTbl = hostName + "/themes/assets/templates/outstanding.hbs"
     var marketingTpl = hostName + "/themes/assets/templates/marketing.hbs";
     var suscriptionModalTpl = hostName + "/themes/assets/templates/suscriptionModal.hbs";
+    var benefitModalTpl = hostName + "/themes/assets/templates/benefitModal.hbs";
     var introSectionTpl = hostName + "/themes/assets/templates/introSection.hbs";
     var marketingLastTpl = hostName + "/themes/assets/templates/marketingLast.hbs";
     var introSectionLastTpl = hostName + "/themes/assets/templates/introSectionLast.hbs";
     var hightLightTpl = hostName + "/themes/assets/templates/hightLight.hbs";
-    var categoriesCarouselTpl = hostName + "/themes/assets/templates/categoriesCarousel.hbs";
+    var categoriesCarouselTpl = "../themes/assets/templates/categoriesCarousel.hbs";
 
+    $.ajax({
+        type: 'get',
+        dataType: 'json',
+        url: 'http://benefit-lacaja.herokuapp.com/api/config?api_token=9db19FZ9jac1kVoFnxCiYja7fBiHWT1TCGvDXQZpHLpwkJqFpfz5qlVkNgHM',
+        success: function(response) {
+            console.log(response);
+            parseTemplate(categoriesDropdownTpl, ".content-dropdown", response);
+            parseTemplate(titleTpl, ".content-title", response);
+            parseTemplate(buttonSuscribtionTbl, ".content-btn-suscription", response);
+            parseTemplate(outstandingTbl, ".content-outstanding", { "title": "Nuestros mejores Beneficios", "text": "	Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy" });
+            parseTemplate(introSectionTpl, ".content-intro-section", null);
+            parseTemplate(categoriesCarouselTpl, ".content-categories-carousel", response);
+        },
+        error: function(e) {
+            console.log(e);
+        }
+    });
 
-    parseTemplate(categoriesCarouselTpl, ".content-categories-carousel", null);
+    $.ajax({
+        type: 'get',
+        dataType: 'json',
+        url: 'http://benefit-lacaja.herokuapp.com/api/partners?api_token=9db19FZ9jac1kVoFnxCiYja7fBiHWT1TCGvDXQZpHLpwkJqFpfz5qlVkNgHM',
+        success: function(response) {
+            console.log(response);
+            var data = { data: response.data.slice(0, 3) };
+            console.log(data);
+            parseTemplate(hightLightTpl, ".content-hight-light", data);
+        },
+        error: function(e) {
+            console.log(e);
+        }
+    });
+
 
     parseTemplate(marketingTpl, ".content-marketing", null);
-
-
     parseTemplate(introSectionLastTpl, ".content-into-section-last", null);
     parseTemplate(marketingLastTpl, ".content-marketing-last", null);
 
@@ -29,43 +65,8 @@ $(function() {
 
     parseTemplate(footerTpl, ".content-footer", null);
     parseTemplate(suscriptionModalTpl, ".content-suscription-modal", null);
+    parseTemplate(benefitModalTpl, ".content-benefit-modal", null);
 
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "http://benefit-lacaja.herokuapp.com/api/config?api_token=9db19FZ9jac1kVoFnxCiYja7fBiHWT1TCGvDXQZpHLpwkJqFpfz5qlVkNgHM",
-        "method": "GET",
-        "headers": {
-            "content-type": "application/json",
-            "cache-control": "no-cache"
-        },
-        "processData": false
-    }
-
-
-    $.ajax(settings).done(function(response) {
-        parseTemplate(categoriesDropdownTpl, ".content-dropdown", response);
-        parseTemplate(titleTpl, ".content-title", response);
-        parseTemplate(buttonSuscribtionTbl, ".content-btn-suscription", response);
-        parseTemplate(outstandingTbl, ".content-outstanding", { "title": "Nuestros mejores Beneficios", "text": "	Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy" });
-        parseTemplate(introSectionTpl, ".content-intro-section", null);
-    });
-
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "http://benefit-lacaja.herokuapp.com/api/partners?api_token=9db19FZ9jac1kVoFnxCiYja7fBiHWT1TCGvDXQZpHLpwkJqFpfz5qlVkNgHM",
-        "method": "GET",
-        "headers": {
-            "content-type": "application/json",
-            "cache-control": "no-cache"
-        },
-        "processData": false
-    }
-
-    $.ajax(settings).done(function(response) {
-        parseTemplate(hightLightTpl, ".content-hight-light", response);
-    });
 
 
 });

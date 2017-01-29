@@ -23,3 +23,20 @@ marketingLast.hbs --> carusel automatico (TODO: debe ser podido configurar desde
 outstanding.hbs --> 
 suscriptionModal.hbs --> modal de suscricion (TODO: poder modificar desde el backpffice)
 title.hbs --> aca se encuetra el tag title
+
+
+Backend
+=======
+
+http://benefit-lacaja.herokuapp.com/api/
+api_token=9db19FZ9jac1kVoFnxCiYja7fBiHWT1TCGvDXQZpHLpwkJqFpfz5qlVkNgHM
+
+/config 
+/parners
+/benefits
+
+faltantes:
+==========
+
+Falta mas especificación en el partner (sub titulo)
+
