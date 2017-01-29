@@ -1,37 +1,43 @@
-                  
-    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+<div class="navbar-wrapper">
+	<div class="container">
+		<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="index.html">{{name}}</a>
-            </div>
-            <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li id="index"><a href="index.html">Inicio</a></li>
-                <li id="about"><a href="about.html">Acerca de Nosotros</a></li>
-                <li id="contact"><a href="contact.html">Contactenos</a></li>
-                
-                
-                <li class="dropdown ">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorias <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    
-                    {{#each benefits}}
-                      <li><a href="category.html?cat={{category.id}}">{{category.name}}</a></li>
-                    {{/each}}
-                  </ul>
-                </li>		
-              </ul>
-            </div>
-          </div>
-        </div>
+					<a class="navbar-brand" href="index.html">{{name}}</a>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li id="index"><a href="index.html">Inicio</a></li>
+						<li id="about"><a href="about.html">Acerca de Nosotros</a></li>
+						<li id="contact"><a href="contact.html">Contactenos</a></li>
+
+
+						<li class="dropdown ">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorias <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+
+								{{#each benefits}}
+								<li><a href="category.html?cat={{category.id}}">{{category.name}}</a></li>
+								{{/each}}
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
 
 <script>
-  var path = window.location.pathname;
-  $("#"+path.split(".")[0].substr(1)).attr("class", "active");
+  var path = window.location.pathname.split("/")[window.location.pathname.split("/").length-1];
+  console.log(path);
+  $("#"+path.split(".")[0]).attr("class", "active");
 </script>
