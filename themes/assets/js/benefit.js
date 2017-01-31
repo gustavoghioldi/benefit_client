@@ -6,7 +6,7 @@ $(function() {
         return options.inverse(this);
     });
 
-    var hostName = "http://localhost:3500";
+    var hostName = getBaseUrl();
 
     var endpoint = "http://benefit-lacaja.herokuapp.com/api/config?api_token=9db19FZ9jac1kVoFnxCiYja7fBiHWT1TCGvDXQZpHLpwkJqFpfz5qlVkNgHM"
     var footerTpl = hostName + "/themes/assets/templates/footer.hbs";
@@ -69,6 +69,7 @@ $(function() {
 
 
 
+
 });
 
 var parseTemplate = function(templateUrl, contentClassName, data) {
@@ -84,4 +85,44 @@ var parseTemplate = function(templateUrl, contentClassName, data) {
         $(contentClassName).html(theCompiledHtml);
 
     });
+}
+
+
+function showModalBenefit(benefitId) {
+    console.log(benefitId)
+    $.ajax({
+        type: 'get',
+        dataType: 'json',
+        url: 'http://benefit-lacaja.herokuapp.com/api/benefits/' + benefitId + '?api_token=9db19FZ9jac1kVoFnxCiYja7fBiHWT1TCGvDXQZpHLpwkJqFpfz5qlVkNgHM',
+
+        success: function(response) {
+            console.log(response);
+            $("#benefit-modal-tag").html(response.tag);
+            $("#benefit-modal-partner-name").html(response.partner.name);
+            $("#benefit-modal-name").html(response.name);
+            $("#benefit-modal-description").html(response.description);
+            $("#benefit-modal-terms").html(response.terms);
+            $("#benefitModal").modal();
+        },
+        error: function(e) {
+            console.log(e);
+        }
+    });
+
+}
+
+function getBaseUrl() {
+    return "http://localhost:5000";
+}
+
+function getParameterByName(name, url) {
+    if (!url) {
+        url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }

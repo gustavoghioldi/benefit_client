@@ -23,7 +23,7 @@
 							<ul class="dropdown-menu">
 
 								{{#each benefits}}
-								<li><a href="category.html?cat={{category.id}}">{{category.name}}</a></li>
+								<li><a href="category.html?cat={{category.id}}&cat-name={{category.name}}">{{category.name}}</a></li>
 								{{/each}}
 							</ul>
 						</li>
@@ -38,6 +38,6 @@
 
 <script>
   var path = window.location.pathname.split("/")[window.location.pathname.split("/").length-1];
-  console.log(path);
+  
   $("#"+path.split(".")[0]).attr("class", "active");
 </script>

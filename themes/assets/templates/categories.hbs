@@ -1,0 +1,26 @@
+<div class="highlightSection">
+	<div class="container">
+		{{#each data}}
+		<div class="row">
+			<div class="col-md-4">
+				
+				<div class="carousel-inner">
+					<div class="item active">
+						<img class="img-responsive relative" src="themes/assets/images/burger.png" alt="Generic placeholder image">
+						<div class="container">
+							<div class="carousel-caption">
+							
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<h2 class="featurette-heading">{{name}}<span class="text-muted">{{resaltado}}</span></h2>
+				<p class="lead">{{description}}</p>
+				<a id="modal-benefit" class="btn btn-default" role="button" onclick="showModalBenefit({{id}})">Ver Más</a>
+			</div>
+		</div>
+		{{/each}}
+	</div>
+</div>
