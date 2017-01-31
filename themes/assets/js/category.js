@@ -5,8 +5,6 @@ $(document).ready(function() {
 
     $("#title").html("<h2> Categoría: " + categoryName + "</h2>");
 
-    console.log(categoryId);
-
     var hostName = getBaseUrl();
     var categoriesTpl = hostName + "/themes/assets/templates/categories.hbs"
     var benefitModalTpl = hostName + "/themes/assets/templates/benefitModal.hbs"

@@ -1,4 +1,6 @@
 $(function() {
+
+    //helper de handelbars
     Handlebars.registerHelper('ifless', function(v1, v2, options) {
         if (v1 < v2) {
             return options.fn(this);
@@ -23,6 +25,7 @@ $(function() {
     var hightLightTpl = hostName + "/themes/assets/templates/hightLight.hbs";
     var categoriesCarouselTpl = "/themes/assets/templates/categoriesCarousel.hbs";
 
+    //llamada a la api principal
     $.ajax({
         type: 'get',
         dataType: 'json',
@@ -41,6 +44,7 @@ $(function() {
         }
     });
 
+    //llamada a la api de parners
     $.ajax({
         type: 'get',
         dataType: 'json',
@@ -56,38 +60,29 @@ $(function() {
         }
     });
 
-
     parseTemplate(marketingTpl, ".content-marketing", null);
     parseTemplate(introSectionLastTpl, ".content-into-section-last", null);
     parseTemplate(marketingLastTpl, ".content-marketing-last", null);
-
-
-
     parseTemplate(footerTpl, ".content-footer", null);
     parseTemplate(suscriptionModalTpl, ".content-suscription-modal", null);
     parseTemplate(benefitModalTpl, ".content-benefit-modal", null);
-
-
-
 
 });
 
 var parseTemplate = function(templateUrl, contentClassName, data) {
 
-
     $.get(templateUrl, function(templateData) {
 
         var theTemplateScript = templateData;
-        // Compile the template
         var theTemplate = Handlebars.compile(theTemplateScript);
         var theCompiledHtml = theTemplate(data);
-        // Add the compiled html to the page
         $(contentClassName).html(theCompiledHtml);
 
     });
 }
 
 
+////funciones coumnes a toda la app
 function showModalBenefit(benefitId) {
     console.log(benefitId)
     $.ajax({
